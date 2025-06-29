@@ -1,0 +1,143 @@
+.buy-window {
+  width: 360px;
+  position: absolute;
+  top: 160px;
+  left: 40%;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+  font-family: sans-serif;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.buy-header {
+  background-color: #1a73e8;
+  color: white;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buy-header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.exchanges span {
+  margin-left: 8px;
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.exchanges .selected {
+  background-color: white;
+  color: #1a73e8;
+  font-weight: bold;
+}
+
+.buy-tabs {
+  display: flex;
+  border-bottom: 1px solid #ddd;
+  font-size: 14px;
+  color: #666;
+}
+
+.buy-tabs > div {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.buy-tabs > div:last-child {
+  border-right: none;
+}
+
+.buy-body {
+  padding: 16px;
+}
+
+.input-group {
+  margin-bottom: 14px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.intraday-checkbox {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  margin: 10px 0;
+}
+
+.intraday-checkbox input {
+  margin-right: 6px;
+}
+
+.info-text {
+  font-size: 12px;
+  color: #888;
+  margin-top: 6px;
+}
+
+.buy-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-top: 1px solid #eee;
+  background-color: #f9f9f9;
+}
+
+.buy-btn {
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background-color: transparent;
+  color: #555;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+
+/* sell action window css */
+.sell-header {
+  background-color: #d93025; /* red */
+}
+
+.sell-btn {
+  background-color: #d93025;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
