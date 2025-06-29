@@ -27,6 +27,7 @@ const SignUp = () => {
         const {data} = await axios.post(backendUrl + '/auth/register', { name, email, password })
 
         if (data.success) {
+          toast.success(data.message)
           setIsLoggedin(true)
           getUserData()
           navigate('/')
@@ -38,6 +39,7 @@ const SignUp = () => {
         const {data} = await axios.post(backendUrl + '/auth/login', { email, password })
 
         if (data.success) {
+          toast.success(data.message)
           setIsLoggedin(true)
           getUserData()
           navigate('/')

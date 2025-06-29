@@ -3,6 +3,7 @@ const authRouter = require('./routes/authRoutes.js')
 const userRouter = require('./routes/userRoutes.js')
 const cookieParser = require("cookie-parser")
 const path = require('path');
+const userAuth = require('./middleware/userAuth.js')
 
 const {UserModel} = require('./model/UserModel.js');
 
@@ -21,9 +22,9 @@ const { OrdersModel } = require("./model/OrdersModel");
 const PORT = process.env.PORT || 3002;
 const uri = process.env.MONGO_URL;
 
+// 'https://onestock.netlify.app/', "https://onestock.netlify.app/dashboard", 
 
-
-const allowedOrigins = ['https://onestock.netlify.app/', "https://onestock.netlify.app/dashboard"]
+const allowedOrigins = ['http://localhost:3000','http://localhost:3001']
 
 const app = express();
 
@@ -31,7 +32,7 @@ app.use(express.json());
 app.use(cookieParser());  
 
 app.use(cors({
-  origin: "https://onestock.netlify.app", // ✅ Exact Netlify domain
+  origin: allowedOrigins,
   credentials: true
 }));
 app.use(bodyParser.json());
@@ -48,32 +49,47 @@ app.get("/allPositions", async (req, res) => {
 });
 
 
-app.get("/allOrders", async (req, res) => {
-  let allOrders = await OrdersModel.find({});
-  res.json(allOrders);
+app.get("/allOrders", userAuth, async (req, res) => {
+
+  try {
+    let allOrders = await OrdersModel.find({userId : req.user?.id});
+    res.json(allOrders);
+    
+  } catch (error) {
+    return res.json({success : false, message: error.message})
+    
+  }
+  
 });
 
 
 
-app.post("/newOrder", async (req, res) => {
-  let newOrder = new OrdersModel({
+app.post("/newOrder", userAuth, async (req, res) => {
+  try {
+     let newOrder = new OrdersModel({
     name: req.body.name,
     qty: req.body.qty,
     price: req.body.price,
     mode: req.body.mode,
+    userId : req.user?.id,
   });
 
   newOrder.save();
 
-  res.send("Order saved!");
+  return res.json({ success: true, message: "Order placed!" });
+  }
+   catch (error) {
+    return res.json({success : false, message: error.message})
+  }
+ 
 });
 
 
 
-app.post("/sellOrder", async (req, res) => {
+app.post("/sellOrder",userAuth, async (req, res) => {
   const { name, quantity, price } = req.body;
   try {
-    const order = await OrdersModel.findOne({ name }) 
+    const order = await OrdersModel.findOne({ name:name, userId : req.user?.id }) 
 
     if (!order) {
       return res.json({ success: false, message: `${name} not in your orders.` })

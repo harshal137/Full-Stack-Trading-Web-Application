@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from 'react';
 import ProfitSection from "./ProfitSection";
+import { AppContext } from '../context/AppContext.js';
 
 const Summary = () => {
+
+    const { userData } = useContext(AppContext)
   return (
     <>
       <div className="username">
-        <h6>Hi, User!</h6>
+        <h6>Hi <bold>{userData? userData.name.toUpperCase() : "User!" }</bold> this is your Dashboard </h6>
         <hr className="divider" />
       </div>
 

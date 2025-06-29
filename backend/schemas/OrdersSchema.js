@@ -1,6 +1,10 @@
-const { Schema  } = require("mongoose");
+const { Schema, Types  } = require("mongoose");
 
 const OrdersSchema = new Schema({
+  userId : {
+    type: Types.ObjectId,       
+    ref: "user",               
+  },
   name: String,
   qty: Number,
   price: Number,
