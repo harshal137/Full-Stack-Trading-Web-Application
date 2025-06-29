@@ -39,10 +39,12 @@ const BuyActionWindow = ({ uid }) => {
       setIsLoggedin(false);
       // toast.error("You must be logged in to buy stocks.");
       alert("Please Login or SignUp first")
-      window.location.href = "http://localhost:3000/signup";
+      window.location.href = "https://onestock.netlify.app/signup";
+      // window.location.href = "http://localhost:3000/signup";
     }
 
-      const {data} = await axios.post("http://localhost:3002/newOrder", {
+    // http://localhost:3002
+      const {data} = await axios.post("https://full-stack-trading-web-application.onrender.com/newOrder", {
       name: uid,
       qty: stockQuantity,
       price: stockQuantity*stockPrice,

@@ -22,9 +22,10 @@ const { OrdersModel } = require("./model/OrdersModel");
 const PORT = process.env.PORT || 3002;
 const uri = process.env.MONGO_URL;
 
-// 'https://onestock.netlify.app/', "https://onestock.netlify.app/dashboard", 
+//  
 
-const allowedOrigins = ['http://localhost:3000','http://localhost:3001']
+const allowedOrigins = ['https://onestock.netlify.app', "https://onestock.netlify.app/dashboard"]
+// const allowedOrigins = ['http://localhost:3000','http://localhost:3001']
 
 const app = express();
 

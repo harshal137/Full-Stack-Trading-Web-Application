@@ -19,7 +19,8 @@ const ProfileMenu = () => {
       const {data} = await axios.post(backendUrl + '/auth/logout')
       data.success && setIsLoggedin(false)
       data.success && setUserData(false)
-      window.location.href = "http://localhost:3000/signup";
+      window.location.href = "https://onestock.netlify.app/signup";
+      // window.location.href = "http://localhost:3000/signup";
       
     } catch (error) {
       toast.error(error.message)
@@ -39,8 +40,8 @@ const ProfileMenu = () => {
 
       {isHovered && (
         <ul className="dropdown">
-          <li><Link className="dropdown-link" to="http://localhost:3000/">Profile</Link></li>
-    <li><Link className="dropdown-link" to="http://localhost:3000/">Setting</Link></li>
+          <li><Link className="dropdown-link" to="https://onestock.netlify.app/">Profile</Link></li>
+    <li><Link className="dropdown-link" to="https://onestock.netlify.app/">Setting</Link></li>
     <li><Link className="dropdown-link" onClick={logout} >Logout</Link></li>
         </ul>
       )}
