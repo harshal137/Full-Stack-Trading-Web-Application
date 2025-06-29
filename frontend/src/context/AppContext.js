@@ -8,7 +8,7 @@ export const AppContextProvider = (props)=>{
 
     axios.defaults.withCredentials = true;
 
-    const backendUrl = 'https://full-stack-trading-web-application.onrender.com'
+    const backendUrl = 'https://full-stack-trading-web-application.onrender.com/'
     const [isLoggedin, setIsLoggedin] = useState(false)
     const [userData, setUserData] = useState(false)
 
