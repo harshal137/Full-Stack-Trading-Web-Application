@@ -29,7 +29,11 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());  
-app.use(cors({origin:allowedOrigins, credentials: true}))
+
+app.use(cors({
+  origin: "https://onestock.netlify.app", // ✅ Exact Netlify domain
+  credentials: true
+}));
 app.use(bodyParser.json());
 
 
