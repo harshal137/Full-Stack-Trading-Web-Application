@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 import GeneralContext from "./GeneralContext";
+import { toast } from 'react-toastify'
+import { AppContext } from '../context/AppContext.js';
 
 import "./BuyActionWindow.css";
 
@@ -17,6 +19,8 @@ const BuyActionWindow = ({ uid }) => {
 
   const { closeBuyWindow } = useContext(GeneralContext);
 
+  const { backendUrl, setUserData, setIsLoggedin } = useContext(AppContext)
+
   useEffect(() => {
     const selectedStock = watchlist.find((stock) => stock.name === uid);
     if (selectedStock) {
@@ -24,16 +28,43 @@ const BuyActionWindow = ({ uid }) => {
     }
   }, [uid]);
 
-  const handleBuyClick = () => {
-    axios.post("http://localhost:3002/newOrder", {
+  const handleBuyClick = async () => {
+
+
+    try {
+
+       const authRes = await axios.get(backendUrl + "/auth/is-auth");
+    if (!authRes.data.success) {
+      setUserData(false);
+      setIsLoggedin(false);
+      // toast.error("You must be logged in to buy stocks.");
+      alert("Please Login or SignUp first")
+      window.location.href = "http://localhost:3000/signup";
+    }
+
+      const {data} = await axios.post("http://localhost:3002/newOrder", {
       name: uid,
       qty: stockQuantity,
       price: stockQuantity*stockPrice,
       mode: "BUY",
     });
 
+    if(data.success){
+      toast.success(data.message)
+    }else{
+          toast.error(data.message)
+        }
+    
     closeBuyWindow();
-    window.location.reload();
+    setTimeout(() => {
+      window.location.reload();
+    }, 2*1000);
+    
+      
+    } catch (error) {
+      toast.error(error.message)
+    }
+    
   };
 
   const handleCancelClick = () => {
@@ -46,12 +77,6 @@ const BuyActionWindow = ({ uid }) => {
       <div className="buy-header">
         <h2>{uid || "Loading..."}</h2>
         <div className="exchanges">
-          <span
-            className={exchange === "BSE" ? "selected" : ""}
-            onClick={() => setExchange("BSE")}
-          >
-            BSE ₹{(stockPrice - 0.5).toFixed(2)}
-          </span>
           <span
             className={exchange === "NSE" ? "selected" : ""}
             onClick={() => setExchange("NSE")}
