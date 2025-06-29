@@ -122,7 +122,6 @@ app.post("/sellOrder",userAuth, async (req, res) => {
 
 
 app.use("/auth", authRouter)
-
 app.use("/user", userRouter)
 
 
