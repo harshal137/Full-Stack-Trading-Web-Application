@@ -19,12 +19,12 @@ const Dashboard = () => {
       </GeneralContextProvider>
       <div className="content">
         <Routes>
-          <Route exact path="/" element={<Summary />} />
-          <Route path="/orders" element={<Orders />} />
-          <Route path="/holdings" element={<Holdings />} />
-          <Route path="/positions" element={<Positions />} />
-          <Route path="/funds" element={<Funds />} />
-          <Route path="/apps" element={<Apps />} />
+          <Route exact path="/dashboard" element={<Summary />} />
+          <Route path="/dashboard/orders" element={<Orders />} />
+          <Route path="/dashboard/holdings" element={<Holdings />} />
+          <Route path="/dashboard/positions" element={<Positions />} />
+          <Route path="/dashboard/funds" element={<Funds />} />
+          <Route path="/dashboard/apps" element={<Apps />} />
         </Routes>
       </div>
     </div>

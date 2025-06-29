@@ -25,7 +25,7 @@ const BuyActionWindow = ({ uid }) => {
   }, [uid]);
 
   const handleBuyClick = () => {
-    axios.post("http://localhost:3002/newOrder", {
+    axios.post("https://full-stack-trading-web-application.onrender.com/newOrder", {
       name: uid,
       qty: stockQuantity,
       price: stockQuantity*stockPrice,
