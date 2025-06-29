@@ -40,8 +40,8 @@ const ProfileMenu = () => {
 
       {isHovered && (
         <ul className="dropdown">
-          <li><Link className="dropdown-link" to="/">Profile</Link></li>
-    <li><Link className="dropdown-link" to="http://localhost:3001/dashboard">Dashboard</Link></li>
+          <li><Link className="dropdown-link" to="https://onestock.netlify.app/">Profile</Link></li>
+    <li><Link className="dropdown-link" to="https://onestock.netlify.app/dashboard">Dashboard</Link></li>
     <li><Link className="dropdown-link" to="" onClick={logout}>Logout</Link></li>
           
           
