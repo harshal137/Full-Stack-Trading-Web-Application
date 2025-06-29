@@ -2,6 +2,7 @@
 const authRouter = require('./routes/authRoutes.js')
 const userRouter = require('./routes/userRoutes.js')
 const cookieParser = require("cookie-parser")
+const path = require('path');
 
 const {UserModel} = require('./model/UserModel.js');
 
@@ -22,7 +23,7 @@ const uri = process.env.MONGO_URL;
 
 
 
-const allowedOrigins = ['http://localhost:3000']
+const allowedOrigins = ['https://onestock.netlify.app/', "https://onestock.netlify.app/dashboard"]
 
 const app = express();
 
@@ -47,6 +48,7 @@ app.get("/allOrders", async (req, res) => {
   let allOrders = await OrdersModel.find({});
   res.json(allOrders);
 });
+
 
 
 app.post("/newOrder", async (req, res) => {
@@ -97,22 +99,16 @@ app.post("/sellOrder", async (req, res) => {
 })
 
 
-// app.post('/register', async (req, res) => {
-//   const { name, email, password } = req.body;
-
-//   try {
-//     const newUser = new UserModel({ name, email, password });
-//     await newUser.save();
-//     res.json({ success: true });
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ error: "Registration failed" });
-//   }
-// });
-
 
 app.use("/auth", authRouter)
+
 app.use("/user", userRouter)
+
+
+
+app.get('/', (req,res)=>{
+  res.send("backend working")
+})
 
 
 app.listen(3002, () => {
