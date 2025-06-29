@@ -19,6 +19,11 @@ import { useLocation } from 'react-router-dom';
 import { ToastContainer} from 'react-toastify';
 import { AppContextProvider } from './context/AppContext.js'
 
+import axios from "axios";
+
+axios.defaults.baseURL = "https://full-stack-trading-web-application.onrender.com/";
+axios.defaults.withCredentials = true;
+
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();

@@ -48,6 +48,8 @@ const WatchList = () => {
   //   const interval = setInterval(getPricesAndMerge, 10000);
   //   return () => clearInterval(interval);
   // }, []);
+
+  
   
   const data = {
     labels,
