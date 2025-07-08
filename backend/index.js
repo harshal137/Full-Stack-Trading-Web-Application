@@ -24,8 +24,10 @@ const uri = process.env.MONGO_URL;
 
 //  
 
+
 // const allowedOrigins = ['https://onestock.netlify.app', "https://onestock.netlify.app/dashboard"]
 const allowedOrigins = ['http://localhost:3000','http://localhost:3001']
+
 
 const app = express();
 
