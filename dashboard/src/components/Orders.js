@@ -25,7 +25,7 @@ const [allOrders, setAllOrders] = useState([]);
   // }, []);
 
   useEffect(() => {
-  axios.get("https://full-stack-trading-web-application.onrender.com/allOrders")
+  axios.get("http://localhost:3002/allOrders")
     .then((res) => {
       if (res.data && Array.isArray(res.data) && res.data.length > 0) {
         setAllOrders(res.data);
